@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferenceView extends StatefulWidget {
+  const SharedPreferenceView({Key? key}) : super(key: key);
+
   @override
-  State<StatefulWidget> createState() {
-    return SharedPreferenceViewState();
-  }
+  State<SharedPreferenceView> createState() => _SharedPreferenceViewState();
 }
 
-class SharedPreferenceViewState extends State<SharedPreferenceView> {
+class _SharedPreferenceViewState extends State<SharedPreferenceView> {
   final String KEY_COUNTER = 'counter';
   int _counter = 0;
 
@@ -30,34 +30,34 @@ class SharedPreferenceViewState extends State<SharedPreferenceView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text(
-          'Storing simple data locally using\nshared_preferences ^0.5.2',
+        const Text(
+          'Storing simple data locally using\nshared_preferences ^2.0.15',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
             color: Colors.blue,
           ),
         ),
-        Padding(padding: EdgeInsets.only(bottom: 5)),
-        Text(
-          'Wraps NSUserDefaults (on iOS) and SharedPreferences (on Android). Not recommended for storing critical data.',
+        const Padding(padding: EdgeInsets.only(bottom: 5)),
+        const Text(
+          'Wraps NSUserDefaults (on iOS and macOS) and SharedPreferences (on Android). Not recommended for storing critical data.',
           style: TextStyle(
             fontSize: 14,
           ),
         ),
-        Padding(padding: EdgeInsets.only(bottom: 10)),
+        const Padding(padding: EdgeInsets.only(bottom: 10)),
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Container(
             color: Colors.blue,
             height: 150,
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text(
+                const Text(
                   'COUNTER',
                   style: TextStyle(
                     fontSize: 16,
@@ -65,28 +65,28 @@ class SharedPreferenceViewState extends State<SharedPreferenceView> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Padding(padding: EdgeInsets.only(bottom: 5)),
+                const Padding(padding: EdgeInsets.only(bottom: 5)),
                 Text(
                   '$_counter',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 30,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Padding(padding: EdgeInsets.only(bottom: 10)),
+                const Padding(padding: EdgeInsets.only(bottom: 10)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    RaisedButton(
-                      child: Text('Increment'),
+                    ElevatedButton(
                       onPressed: _incrementCounter,
+                      child: const Text('Increment'),
                     ),
-                    Padding(padding: EdgeInsets.all(10)),
-                    RaisedButton(
-                      child: Text('Decrement'),
+                    const Padding(padding: EdgeInsets.all(10)),
+                    ElevatedButton(
                       onPressed: _decreaseCounter,
+                      child: const Text('Decrement'),
                     ),
                   ],
                 ),

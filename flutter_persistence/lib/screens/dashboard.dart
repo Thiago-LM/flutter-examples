@@ -7,17 +7,19 @@ import 'package:flutter_persistence_demo/widgets/secured_storage_view.dart';
 import 'package:flutter_persistence_demo/widgets/shared_preference_view.dart';
 
 class DashboardScreen extends StatelessWidget {
+  const DashboardScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Persistence Demo'),
+        title: const Text('Flutter Persistence Demo'),
       ),
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
           child: Column(
-            children: <Widget>[
+            children: const <Widget>[
               SharedPreferenceView(),
               Padding(padding: EdgeInsets.only(bottom: 30)),
               SecuredStorageView(),

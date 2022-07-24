@@ -8,14 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecuredStorageView extends StatefulWidget {
+  const SecuredStorageView({Key? key}) : super(key: key);
+
   @override
-  State<StatefulWidget> createState() {
-    return SecuredStorageViewState();
-  }
+  State<SecuredStorageView> createState() => _SecuredStorageViewState();
 }
 
-class SecuredStorageViewState extends State<SecuredStorageView> {
-  final storage = FlutterSecureStorage();
+class _SecuredStorageViewState extends State<SecuredStorageView> {
+  final storage = const FlutterSecureStorage();
   final String KEY_API_TOKEN = 'api_token';
   String _data = "";
 
@@ -25,34 +25,34 @@ class SecuredStorageViewState extends State<SecuredStorageView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text(
-          'Secure storage of credential using\nflutter_secure_storage ^3.2.1+1',
+        const Text(
+          'Secure storage of credential using\nflutter_secure_storage ^5.0.2',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
             color: Colors.blue,
           ),
         ),
-        Padding(padding: EdgeInsets.only(bottom: 5)),
-        Text(
+        const Padding(padding: EdgeInsets.only(bottom: 5)),
+        const Text(
           'Stores data in Keychain (for iOS) and Keystore (for Android).',
           style: TextStyle(
             fontSize: 14,
           ),
         ),
-        Padding(padding: EdgeInsets.only(bottom: 10)),
+        const Padding(padding: EdgeInsets.only(bottom: 10)),
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Container(
             color: Colors.blue,
             height: 150,
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text(
+                const Text(
                   'API TOKEN',
                   style: TextStyle(
                     fontSize: 16,
@@ -60,33 +60,33 @@ class SecuredStorageViewState extends State<SecuredStorageView> {
                     color: Colors.white,
                   ),
                 ),
-                Padding(padding: EdgeInsets.only(bottom: 5)),
+                const Padding(padding: EdgeInsets.only(bottom: 5)),
                 Text(
-                  '$_data',
-                  style: TextStyle(
+                  _data,
+                  style: const TextStyle(
                     fontSize: 20,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Padding(padding: EdgeInsets.only(bottom: 10)),
+                const Padding(padding: EdgeInsets.only(bottom: 10)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    RaisedButton(
-                      child: Text('Generate'),
+                    ElevatedButton(
                       onPressed: _generateApiToken,
+                      child: const Text('Generate'),
                     ),
-                    Padding(padding: EdgeInsets.all(10)),
-                    RaisedButton(
-                      child: Text('Save'),
+                    const Padding(padding: EdgeInsets.all(10)),
+                    ElevatedButton(
                       onPressed: _saveApiToken,
+                      child: const Text('Save'),
                     ),
-                    Padding(padding: EdgeInsets.all(10)),
-                    RaisedButton(
-                      child: Text('Read'),
+                    const Padding(padding: EdgeInsets.all(10)),
+                    ElevatedButton(
                       onPressed: _readApiToken,
+                      child: const Text('Read'),
                     ),
                   ],
                 ),
@@ -100,8 +100,8 @@ class SecuredStorageViewState extends State<SecuredStorageView> {
 
   _generateApiToken() {
     var desiredLength = 25;
-    var rand = new Random();
-    var randomString = new List.generate(desiredLength, (index) {
+    var rand = Random();
+    var randomString = List.generate(desiredLength, (index) {
       return rand.nextInt(33) + 89;
     });
 
@@ -110,13 +110,13 @@ class SecuredStorageViewState extends State<SecuredStorageView> {
       _data = String.fromCharCodes(randomString);
 
       // Log
-      print("Succesfully generated $_data");
+      debugPrint("Succesfully generated $_data");
 
       // Display data to the user
-      Scaffold.of(context).showSnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Generated string is $_data'),
-          duration: Duration(milliseconds: 1000),
+          duration: const Duration(milliseconds: 1000),
         ),
       );
     });
@@ -126,11 +126,11 @@ class SecuredStorageViewState extends State<SecuredStorageView> {
     await storage.write(key: KEY_API_TOKEN, value: _data);
 
     // Log
-    print("Succesfully saved $_data");
+    debugPrint("Succesfully saved $_data");
 
     // Display data to the user
-    Scaffold.of(context).showSnackBar(
-      SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
         content: Text('Data successfully saved'),
         duration: Duration(milliseconds: 1000),
       ),
@@ -138,20 +138,20 @@ class SecuredStorageViewState extends State<SecuredStorageView> {
   }
 
   _readApiToken() async {
-    String apiToken = await storage.read(key: KEY_API_TOKEN);
+    String? apiToken = await storage.read(key: KEY_API_TOKEN);
 
     setState(() {
       // Assign the retrieve data locally via synchronous call
-      _data = apiToken;
+      _data = apiToken!;
 
       // Log
-      print("Succesfully retrieved $_data");
+      debugPrint("Succesfully retrieved $_data");
 
       // Display data to the user
-      Scaffold.of(context).showSnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Data retrieved is $_data'),
-          duration: Duration(milliseconds: 1000),
+          duration: const Duration(milliseconds: 1000),
         ),
       );
     });

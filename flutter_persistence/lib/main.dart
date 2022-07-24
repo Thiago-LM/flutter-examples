@@ -5,9 +5,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_persistence_demo/screens/dashboard.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,8 +17,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            primary: Colors.grey[300],
+            onPrimary: Colors.black,
+          ),
+        ),
       ),
-      home: DashboardScreen(),
+      home: const DashboardScreen(),
     );
   }
 }
