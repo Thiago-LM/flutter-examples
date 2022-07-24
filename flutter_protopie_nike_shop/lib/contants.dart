@@ -13,5 +13,6 @@ class AssetConstants {
       'https://user-images.githubusercontent.com/20706361/78982836-95918500-7b55-11ea-8aba-5615c5fdf784.png';
   static const phantom =
       'https://user-images.githubusercontent.com/20706361/78983860-9d522900-7b57-11ea-938c-983505fe703c.png';
-      static const nikeAppLogo = 'https://user-images.githubusercontent.com/20706361/78985475-7d246900-7b5b-11ea-8c4e-8d2040812b3c.png';
+  static const nikeAppLogo =
+      'https://user-images.githubusercontent.com/20706361/78985475-7d246900-7b5b-11ea-8c4e-8d2040812b3c.png';
 }

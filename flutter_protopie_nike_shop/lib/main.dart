@@ -4,13 +4,16 @@
 
 import 'dart:math';
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_protopie_nike_shop/contants.dart';
 import 'package:flutter_protopie_nike_shop/product.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,35 +22,43 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(
+      home: const MyHomePage(
         title: 'Flutter Demo Home Page',
       ),
+      scrollBehavior: MyCustomScrollBehavior(),
     );
   }
 }
 
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  // Override behavior methods to support both touch
+  // on mobile devices and mouse on desktop devices.
+  // For reference: https://docs.flutter.dev/release/breaking-changes/default-scroll-behavior-drag
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
+}
+
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, this.title}) : super(key: key);
+  const MyHomePage({Key? key, this.title}) : super(key: key);
 
   final String? title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
-  List<Product> _products = [];
+  final List<Product> _products = [];
   PageController? _pageController;
   double? _currentPage = 0;
   String? _productCategory = 'TRAINING';
 
   late AnimationController _animationController;
-  Animation<Offset>? _searchOffsetAnimation;
-  Animation<Offset>? _cartOffsetAnimation;
   late Animation<double> _nikeLogoOffsetAnimation;
-  Animation<Offset>? _productBackgroundOffsetAnimation;
-  Animation<Offset>? _productOffsetAnimation;
 
   bool _isAnimated = false;
 
@@ -97,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage>
     // Prepare animations
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 750),
+      duration: const Duration(milliseconds: 750),
     );
 
     _nikeLogoOffsetAnimation = Tween<double>(
@@ -119,17 +130,17 @@ class _MyHomePageState extends State<MyHomePage>
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: Color(0xFFF3F3F3),
+      backgroundColor: const Color(0xFFF3F3F3),
       appBar: AppBar(
-        leading: Icon(
+        leading: const Icon(
           Icons.search,
           color: Colors.black,
         ),
-        backgroundColor: Color(0xFFF3F3F3),
+        backgroundColor: const Color(0xFFF3F3F3),
         elevation: 0,
-        actions: <Widget>[
+        actions: const <Widget>[
           Padding(
-            padding: const EdgeInsets.only(right: 12),
+            padding: EdgeInsets.only(right: 12),
             child: Icon(
               Icons.shopping_cart,
               color: Colors.black,
@@ -146,11 +157,11 @@ class _MyHomePageState extends State<MyHomePage>
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Container(
+                    SizedBox(
                       height: size.height * 0.60,
                       width: size.width,
                       child: PageView.builder(
-                        physics: BouncingScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         itemCount: _products.length,
                         controller: _pageController,
                         itemBuilder: (BuildContext context, int index) {
@@ -187,7 +198,7 @@ class _MyHomePageState extends State<MyHomePage>
                     size.width / 2 - 25,
                     _nikeLogoOffsetAnimation.value,
                   ),
-                  child: Container(
+                  child: SizedBox(
                     height: 100,
                     width: 50,
                     child: Image.network(AssetConstants.nikeAppLogo),
@@ -204,7 +215,7 @@ class _MyHomePageState extends State<MyHomePage>
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Icon(
+                        const Icon(
                           Icons.arrow_back,
                           size: 16,
                         ),
@@ -223,14 +234,14 @@ class _MyHomePageState extends State<MyHomePage>
                           child: Text(
                             _productCategory!.toUpperCase(),
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w300,
                               letterSpacing: 2,
                             ),
                           ),
                         ),
-                        Icon(
+                        const Icon(
                           Icons.arrow_forward,
                           size: 16,
                         ),
@@ -273,7 +284,7 @@ class PageItemView extends StatefulWidget {
     this.angle,
     this.productAngle,
     this.alignment,
-  })  : super(key: key);
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -293,37 +304,35 @@ class _PageItemViewState extends State<PageItemView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          _alignment == FractionalOffset(0.0, 0.5)
-              ? Transform(
-                  transform: Matrix4.identity()
-                    ..setEntry(3, 2, _perspective)
-                    ..scale(1 - lerpDouble(0, -0.25, _index - _page)!)
-                    ..rotateY(_angle * (_page - _index)),
-                  alignment: _alignment,
-                  child: _buildBackground(_itemHeight),
-                )
-              : _buildBackground(_itemHeight),
-          Transform.translate(
-            offset: Offset(0, -20),
-            child: Transform.rotate(
-              angle: _productAngle * (_page - _index),
-              child: Container(
-                height: 160,
-                child: Center(
-                  child: Transform.rotate(
-                    angle: 276,
-                    child: Image.network(_product.imageUrl!),
-                  ),
+    return Stack(
+      alignment: Alignment.center,
+      children: <Widget>[
+        _alignment == const FractionalOffset(0.0, 0.5)
+            ? Transform(
+                transform: Matrix4.identity()
+                  ..setEntry(3, 2, _perspective)
+                  ..scale(1 - lerpDouble(0, -0.25, _index - _page)!)
+                  ..rotateY(_angle * (_page - _index)),
+                alignment: _alignment,
+                child: _buildBackground(_itemHeight),
+              )
+            : _buildBackground(_itemHeight),
+        Transform.translate(
+          offset: const Offset(0, -20),
+          child: Transform.rotate(
+            angle: _productAngle * (_page - _index),
+            child: SizedBox(
+              height: 160,
+              child: Center(
+                child: Transform.rotate(
+                  angle: 276,
+                  child: Image.network(_product.imageUrl!),
                 ),
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -356,7 +365,7 @@ class _PageItemViewState extends State<PageItemView> {
                 child: Text(
                   _product.title!.toUpperCase(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w300,
                     letterSpacing: 1,
@@ -374,7 +383,7 @@ class _PageItemViewState extends State<PageItemView> {
                     child: Text(
                       _product.subtitle!.toUpperCase(),
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w300,
                         letterSpacing: 2,
@@ -391,7 +400,7 @@ class _PageItemViewState extends State<PageItemView> {
                           child: Text(
                             _product.price!.toUpperCase(),
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w300,
                               letterSpacing: 2,
@@ -404,8 +413,8 @@ class _PageItemViewState extends State<PageItemView> {
                           child: Container(
                             height: 48,
                             width: 48,
-                            color: Color(0xFF232323),
-                            child: Icon(
+                            color: const Color(0xFF232323),
+                            child: const Icon(
                               Icons.add,
                               color: Colors.white30,
                             ),
