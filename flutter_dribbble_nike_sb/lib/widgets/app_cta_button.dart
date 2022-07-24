@@ -9,15 +9,13 @@ class AppCtaButton extends StatefulWidget {
   final Function(bool isTapped) onCtaTap;
 
   const AppCtaButton({
-    Key key,
-    @required this.title,
-    this.onCtaTap,
+    Key? key,
+    required this.title,
+    required this.onCtaTap,
   }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
-    return _AppCtaButtonState();
-  }
+  State<AppCtaButton> createState() => _AppCtaButtonState();
 }
 
 class _AppCtaButtonState extends State<AppCtaButton> {
@@ -34,10 +32,10 @@ class _AppCtaButtonState extends State<AppCtaButton> {
           _isTapped = !_isTapped;
         });
 
-        if (_onCtaTap != null) _onCtaTap(_isTapped);
+        _onCtaTap(_isTapped);
       },
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 500),
         curve: Curves.fastOutSlowIn,
         height: 40,
         width: 150,
@@ -45,7 +43,7 @@ class _AppCtaButtonState extends State<AppCtaButton> {
         child: Center(
           child: Text(
             _title,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -58,13 +56,13 @@ class _AppCtaButtonState extends State<AppCtaButton> {
   BoxDecoration _getDecoration() {
     if (_isTapped) {
       return BoxDecoration(
-        color: Color(0xFFFF2D4C),
-        borderRadius: BorderRadius.all(
+        color: const Color(0xFFFF2D4C),
+        borderRadius: const BorderRadius.all(
           Radius.circular(32),
         ),
         boxShadow: [
           BoxShadow(
-            offset: Offset(0, 2.5),
+            offset: const Offset(0, 2.5),
             color: Colors.red.shade600,
             blurRadius: 10,
           ),
@@ -73,7 +71,7 @@ class _AppCtaButtonState extends State<AppCtaButton> {
     } else {
       return BoxDecoration(
         border: Border.all(width: 2, color: Colors.white),
-        borderRadius: BorderRadius.all(
+        borderRadius: const BorderRadius.all(
           Radius.circular(32),
         ),
       );

@@ -10,10 +10,9 @@ class AppNetworkImage extends StatelessWidget {
   final String imagePath;
 
   const AppNetworkImage({
-    Key key,
-    @required this.imagePath,
-  })  : assert(imagePath != null, 'Image source must not be null!'),
-        super(key: key);
+    Key? key,
+    required this.imagePath,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

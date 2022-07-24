@@ -9,14 +9,14 @@ class AppShowCaseProduct extends StatelessWidget {
   final double productSize;
 
   const AppShowCaseProduct({
-    Key key,
-    @required this.productSize,
+    Key? key,
+    required this.productSize,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
       height: productSize * 10,
       curve: Curves.fastLinearToSlowEaseIn,
       child: Image.network(

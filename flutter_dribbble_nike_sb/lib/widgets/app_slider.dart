@@ -13,40 +13,24 @@ class AppSlider extends StatelessWidget {
   final Function(double value) onChangedValue;
 
   const AppSlider({
-    Key key,
-    @required this.min,
-    @required this.max,
-    @required this.divisions,
-    @required this.sliderValue,
-    @required this.sliderSteps,
-    this.onChangedValue,
-  })  : assert(
-          min != null,
-          'Min must not be null!',
-        ),
-        assert(
-          max != null,
-          'Max must not be null!',
-        ),
-        assert(
-          divisions != null,
-          'Discrete division must not be null!',
-        ),
-        assert(
-          sliderValue != null,
-          'Slider value must not be null!',
-        ),
-        super(key: key);
+    Key? key,
+    required this.min,
+    required this.max,
+    required this.divisions,
+    required this.sliderValue,
+    required this.sliderSteps,
+    required this.onChangedValue,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Container(
+        SizedBox(
           width: 325,
           child: SliderTheme(
-            data: SliderThemeData(
+            data: const SliderThemeData(
               showValueIndicator: ShowValueIndicator.always,
               activeTrackColor: Color(0xFF484848),
               inactiveTrackColor: Color(0xFF484848),
@@ -66,15 +50,15 @@ class AppSlider extends StatelessWidget {
             ),
           ),
         ),
-        Container(
+        SizedBox(
           height: 40,
           child: ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemCount: sliderSteps.length,
             itemBuilder: (BuildContext context, int index) {
-              return Container(
+              return SizedBox(
                 height: 40,
                 width: 50,
                 child: Column(
@@ -83,12 +67,12 @@ class AppSlider extends StatelessWidget {
                   children: <Widget>[
                     AnimatedDefaultTextStyle(
                       curve: Curves.fastLinearToSlowEaseIn,
-                      duration: Duration(milliseconds: 100),
-                      child: Text(
-                        sliderSteps[index].toString(),
-                      ),
+                      duration: const Duration(milliseconds: 100),
                       style: _getSliderStyle(
                         sliderSteps[index] == sliderValue,
+                      ),
+                      child: Text(
+                        sliderSteps[index].toStringAsFixed(0),
                       ),
                     ),
                   ],
@@ -103,13 +87,13 @@ class AppSlider extends StatelessWidget {
 
   TextStyle _getSliderStyle(bool isSelected) {
     if (isSelected) {
-      return TextStyle(
+      return const TextStyle(
         color: Colors.white,
         fontSize: 20,
         fontWeight: FontWeight.bold,
       );
     } else {
-      return TextStyle(
+      return const TextStyle(
         fontSize: 16,
         color: Colors.white,
       );

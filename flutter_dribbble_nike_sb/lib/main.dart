@@ -4,9 +4,11 @@ import 'package:flutter_dribbble_nike_sb/widgets/app_cta_button.dart';
 import 'package:flutter_dribbble_nike_sb/widgets/app_showcase_product.dart';
 import 'package:flutter_dribbble_nike_sb/widgets/app_slider.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,37 +17,37 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation<double> _nikeLogoScaleAnimation;
-  Animation<Offset> _nikeLogoOffsetAnimation;
-  Animation<double> _leftBackgroundWidthAnimation;
-  Animation<double> _rightBackgroundWidthAnimation;
-  Animation<Offset> _productNameOffsetAnimation;
-  Animation<Offset> _productPriceOffsetAnimation;
-  Animation<Offset> _productSliderOffsetAnimation;
-  Animation<Offset> _productDescriptionOffsetAnimation;
-  Animation<Offset> _ctaOffsetAnimation;
-  Animation<Offset> _productShowcaseOffsetAnimation;
-  Animation<Offset> _display1OffsetAnimation;
-  Animation<Offset> _display2OffsetAnimation;
-  Animation<Offset> _display3OffsetAnimation;
-  Animation<Offset> _display4OffsetAnimation;
+  late AnimationController _animationController;
+  late Animation<double> _nikeLogoScaleAnimation;
+  late Animation<Offset> _nikeLogoOffsetAnimation;
+  late Animation<double> _leftBackgroundWidthAnimation;
+  late Animation<double> _rightBackgroundWidthAnimation;
+  late Animation<Offset> _productNameOffsetAnimation;
+  late Animation<Offset> _productPriceOffsetAnimation;
+  late Animation<Offset> _productSliderOffsetAnimation;
+  late Animation<Offset> _productDescriptionOffsetAnimation;
+  late Animation<Offset> _ctaOffsetAnimation;
+  late Animation<Offset> _productShowcaseOffsetAnimation;
+  late Animation<Offset> _display1OffsetAnimation;
+  late Animation<Offset> _display2OffsetAnimation;
+  late Animation<Offset> _display3OffsetAnimation;
+  late Animation<Offset> _display4OffsetAnimation;
 
   double _shoeSize = 39;
 
@@ -56,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage>
     super.initState();
 
     _animationController = AnimationController(
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
       vsync: this,
     );
 
@@ -66,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage>
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(
+        curve: const Interval(
           0,
           1,
           curve: Curves.ease,
@@ -74,12 +76,12 @@ class _MyHomePageState extends State<MyHomePage>
       ),
     );
     _nikeLogoOffsetAnimation = Tween<Offset>(
-      begin: Offset(150, 110),
-      end: Offset(20, 0),
+      begin: const Offset(150, 110),
+      end: const Offset(20, 0),
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(
+        curve: const Interval(
           0.125,
           1,
           curve: Curves.ease,
@@ -93,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage>
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(
+        curve: const Interval(
           0,
           1,
           curve: Curves.ease,
@@ -107,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage>
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(
+        curve: const Interval(
           0,
           1,
           curve: Curves.ease,
@@ -116,12 +118,12 @@ class _MyHomePageState extends State<MyHomePage>
     );
 
     _productNameOffsetAnimation = Tween<Offset>(
-      begin: Offset(0, 1000),
-      end: Offset(0, 125),
+      begin: const Offset(0, 1000),
+      end: const Offset(0, 125),
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(
+        curve: const Interval(
           0,
           0.750,
           curve: Curves.fastOutSlowIn,
@@ -130,12 +132,12 @@ class _MyHomePageState extends State<MyHomePage>
     );
 
     _productPriceOffsetAnimation = Tween<Offset>(
-      begin: Offset(0, 1000),
-      end: Offset(0, 200),
+      begin: const Offset(0, 1000),
+      end: const Offset(0, 200),
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(
+        curve: const Interval(
           0.125,
           0.800,
           curve: Curves.fastOutSlowIn,
@@ -144,12 +146,12 @@ class _MyHomePageState extends State<MyHomePage>
     );
 
     _productSliderOffsetAnimation = Tween<Offset>(
-      begin: Offset(0, 1000),
-      end: Offset(0, 300),
+      begin: const Offset(0, 1000),
+      end: const Offset(0, 300),
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(
+        curve: const Interval(
           0.250,
           0.900,
           curve: Curves.fastOutSlowIn,
@@ -158,12 +160,12 @@ class _MyHomePageState extends State<MyHomePage>
     );
 
     _productDescriptionOffsetAnimation = Tween<Offset>(
-      begin: Offset(0, 1000),
-      end: Offset(0, 375),
+      begin: const Offset(0, 1000),
+      end: const Offset(0, 375),
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(
+        curve: const Interval(
           0.350,
           0.950,
           curve: Curves.fastOutSlowIn,
@@ -172,12 +174,12 @@ class _MyHomePageState extends State<MyHomePage>
     );
 
     _ctaOffsetAnimation = Tween<Offset>(
-      begin: Offset(0, 1000),
-      end: Offset(0, 500),
+      begin: const Offset(0, 1000),
+      end: const Offset(0, 500),
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(
+        curve: const Interval(
           0.450,
           1,
           curve: Curves.fastOutSlowIn,
@@ -186,12 +188,12 @@ class _MyHomePageState extends State<MyHomePage>
     );
 
     _productShowcaseOffsetAnimation = Tween<Offset>(
-      begin: Offset(3000, 20),
-      end: Offset(0, 20),
+      begin: const Offset(3000, 20),
+      end: const Offset(0, 20),
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(
+        curve: const Interval(
           0,
           0.750,
           curve: Curves.ease,
@@ -200,12 +202,12 @@ class _MyHomePageState extends State<MyHomePage>
     );
 
     _display1OffsetAnimation = Tween<Offset>(
-      begin: Offset(3000, 450),
-      end: Offset(60, 450),
+      begin: const Offset(3000, 450),
+      end: const Offset(60, 450),
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(
+        curve: const Interval(
           0.125,
           0.500,
           curve: Curves.fastOutSlowIn,
@@ -214,12 +216,12 @@ class _MyHomePageState extends State<MyHomePage>
     );
 
     _display2OffsetAnimation = Tween<Offset>(
-      begin: Offset(3000, 450),
-      end: Offset(160, 450),
+      begin: const Offset(3000, 450),
+      end: const Offset(160, 450),
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(
+        curve: const Interval(
           0.350,
           0.850,
           curve: Curves.fastOutSlowIn,
@@ -228,12 +230,12 @@ class _MyHomePageState extends State<MyHomePage>
     );
 
     _display3OffsetAnimation = Tween<Offset>(
-      begin: Offset(3000, 450),
-      end: Offset(260, 450),
+      begin: const Offset(3000, 450),
+      end: const Offset(260, 450),
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(
+        curve: const Interval(
           0.450,
           0.950,
           curve: Curves.fastOutSlowIn,
@@ -242,12 +244,12 @@ class _MyHomePageState extends State<MyHomePage>
     );
 
     _display4OffsetAnimation = Tween<Offset>(
-      begin: Offset(3000, 450),
-      end: Offset(360, 450),
+      begin: const Offset(3000, 450),
+      end: const Offset(360, 450),
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(
+        curve: const Interval(
           0.550,
           1,
           curve: Curves.fastOutSlowIn,
@@ -259,55 +261,53 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF040404),
+      backgroundColor: const Color(0xFF040404),
       body: Stack(
         children: <Widget>[
-          Container(
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Column(
-                    children: <Widget>[
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          color: Color(0xFF0D0D0D),
-                        ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Column(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        color: const Color(0xFF0D0D0D),
                       ),
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          color: Color(0xFF101010),
-                        ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        color: const Color(0xFF101010),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                Expanded(
-                  child: Column(
-                    children: <Widget>[
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          color: Color(0xFF202020),
-                        ),
+              ),
+              Expanded(
+                child: Column(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        color: const Color(0xFF202020),
                       ),
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          color: Color(0xFFFF2D4C),
-                        ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        color: const Color(0xFFFF2D4C),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           Align(
             alignment: Alignment.center,
             child: ClipRRect(
-              borderRadius: BorderRadius.all(
+              borderRadius: const BorderRadius.all(
                 Radius.circular(16),
               ),
               clipBehavior: Clip.antiAlias,
@@ -315,10 +315,10 @@ class _MyHomePageState extends State<MyHomePage>
                 children: [
                   AnimatedBuilder(
                     animation: _animationController,
-                    builder: (BuildContext context, Widget child) {
+                    builder: (BuildContext context, Widget? child) {
                       return Stack(
                         children: <Widget>[
-                          Container(
+                          SizedBox(
                             height: 650,
                             width: 900,
                             child: Row(
@@ -326,17 +326,17 @@ class _MyHomePageState extends State<MyHomePage>
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Container(
-                                  color: Color(0xFF121212),
+                                  color: const Color(0xFF121212),
                                   width: _leftBackgroundWidthAnimation.value,
                                 ),
                                 Container(
-                                  color: Color(0xFF0D0D0D),
+                                  color: const Color(0xFF0D0D0D),
                                   width: _rightBackgroundWidthAnimation.value,
                                 ),
                               ],
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             height: 650,
                             width: 900,
                             child: Row(
@@ -357,7 +357,7 @@ class _MyHomePageState extends State<MyHomePage>
                                               MainAxisAlignment.start,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
-                                          children: <Widget>[
+                                          children: const <Widget>[
                                             SelectableText(
                                               "LEBRON SOLDIER XIII",
                                               style: TextStyle(
@@ -380,7 +380,7 @@ class _MyHomePageState extends State<MyHomePage>
                                       Transform.translate(
                                         offset:
                                             _productPriceOffsetAnimation.value,
-                                        child: SelectableText(
+                                        child: const SelectableText(
                                           "\$150",
                                           style: TextStyle(
                                             color: Colors.white,
@@ -397,7 +397,7 @@ class _MyHomePageState extends State<MyHomePage>
                                           max: 45,
                                           divisions: 6,
                                           sliderValue: _shoeSize,
-                                          sliderSteps: [
+                                          sliderSteps: const [
                                             39,
                                             40,
                                             41,
@@ -417,7 +417,7 @@ class _MyHomePageState extends State<MyHomePage>
                                         offset:
                                             _productDescriptionOffsetAnimation
                                                 .value,
-                                        child: SelectableText(
+                                        child: const SelectableText(
                                           "There's no player more battle-tested than LeBron James. Build for speed, with responsive cushioning and lightweight lockdown, the Lebron Soldier XIII is the next iteration of custom reinforcement for on-court dominance.",
                                           style: TextStyle(
                                             color: Color(0xFF909090),
@@ -435,7 +435,7 @@ class _MyHomePageState extends State<MyHomePage>
                                             // TODO: UX/logic setup for demo only :)
                                             // Show some delay
                                             Future.delayed(
-                                              Duration(seconds: 1),
+                                              const Duration(seconds: 1),
                                               () {
                                                 setState(() {
                                                   _isAnimationTriggered =
@@ -451,7 +451,7 @@ class _MyHomePageState extends State<MyHomePage>
                                     ],
                                   ),
                                 ),
-                                Container(
+                                SizedBox(
                                   width: 500,
                                   height: 650,
                                   child: Stack(
@@ -459,7 +459,7 @@ class _MyHomePageState extends State<MyHomePage>
                                       Transform.translate(
                                         offset: _productShowcaseOffsetAnimation
                                             .value,
-                                        child: Container(
+                                        child: SizedBox(
                                           height: 450,
                                           child: Stack(
                                             children: <Widget>[
@@ -483,12 +483,14 @@ class _MyHomePageState extends State<MyHomePage>
                                               width: 5,
                                               color: Colors.black87,
                                             ),
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius:
+                                                const BorderRadius.all(
                                               Radius.circular(37.5),
                                             ),
                                           ),
                                           child: ClipRRect(
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius:
+                                                const BorderRadius.all(
                                               Radius.circular(37.5),
                                             ),
                                             child: Image.network(
@@ -508,12 +510,14 @@ class _MyHomePageState extends State<MyHomePage>
                                               width: 5,
                                               color: Colors.black87,
                                             ),
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius:
+                                                const BorderRadius.all(
                                               Radius.circular(37.5),
                                             ),
                                           ),
                                           child: ClipRRect(
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius:
+                                                const BorderRadius.all(
                                               Radius.circular(37.5),
                                             ),
                                             child: Image.network(
@@ -533,12 +537,14 @@ class _MyHomePageState extends State<MyHomePage>
                                               width: 5,
                                               color: Colors.black87,
                                             ),
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius:
+                                                const BorderRadius.all(
                                               Radius.circular(37.5),
                                             ),
                                           ),
                                           child: ClipRRect(
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius:
+                                                const BorderRadius.all(
                                               Radius.circular(37.5),
                                             ),
                                             child: Image.network(
@@ -558,12 +564,14 @@ class _MyHomePageState extends State<MyHomePage>
                                               width: 5,
                                               color: Colors.black87,
                                             ),
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius:
+                                                const BorderRadius.all(
                                               Radius.circular(37.5),
                                             ),
                                           ),
                                           child: ClipRRect(
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius:
+                                                const BorderRadius.all(
                                               Radius.circular(37.5),
                                             ),
                                             child: Image.network(
